@@ -4,3 +4,31 @@
  * This is a general purpose Gradle build.
  * Learn how to create Gradle builds at https://guides.gradle.org/creating-new-gradle-builds/
  */
+buildscript {
+    repositories {
+        jcenter()
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+    dependencies {
+        classpath "gradle.plugin.cn.bestwu.gradle:propdeps-plugin:0.0.10"
+        classpath "com.sarhanm:gradle-versioner:2.3.14"
+        classpath "gradle.plugin.com.gorylenko.gradle-git-properties:gradle-git-properties:1.4.21"
+    }
+}
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'maven'
+apply plugin: 'java-library'
+apply plugin: "cn.bestwu.propdeps-idea"
+apply plugin: 'com.gorylenko.gradle-git-properties'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+compileJava.options.encoding = 'UTF-8'
+
+dependencies {
+    implementation 'com.google.guava:guava:20.0'
+    implementation "javax.validation:validation-api:2.0.1.Final"
+    testCompile 'junit:junit:4.+'
+    implementation "org.projectlombok:lombok:1.16.+"
+}
